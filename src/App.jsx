@@ -3,9 +3,9 @@ import "./App.css";
 
 function App() {
   const [todoList, setTodoList] = useState([
-    { id: 0, content: "123", isDone: false },
+    { id: 0, content: "운동하기", isDone: false },
     { id: 1, content: "코딩 공부하기", isDone: false },
-    { id: 2, cㅂontent: "잠 자기", isDone: false},
+    { id: 2, content: "잠 자기", isDone: false},
   ]);
 
   return (
@@ -24,7 +24,7 @@ function TodoInput({ todoList, setTodoList }) {
   const [inputValue, setInputValue] = useState("");
 
   return (
-    <>
+    <div className="todo-input">
       <input
         value={inputValue}
         onChange={(event) => setInputValue(event.target.value)}
@@ -39,7 +39,7 @@ function TodoInput({ todoList, setTodoList }) {
       >
         추가하기
       </button>
-    </>
+    </div>
   );
 }
 
@@ -60,7 +60,7 @@ function Todo({ todo, setTodoList }) {
     setTodoList((prev) => prev.map((el) => el.id === todo.id ? { ...el, isDone: !el.isDone} : el));
   };
   return (
-    <li>
+    <li className="todo-item">
       <input type="checkbox" checked={todo.isDone} onChange={toggleDone} />
       {isEdit ? (
         <>
@@ -68,23 +68,29 @@ function Todo({ todo, setTodoList }) {
             value={inputValue}
             onChange={(event) => setInputValue(event.target.value)}
           />
-          <button
-            onClick={() => {
-              setTodoList((prev) =>
-                prev.map((el) =>
-                  el.id === todo.id ? { ...el, content: inputValue } : el
-                )
-              );
-              setIsEdit(false);
-            }}
-          >
-            저장
-          </button>
+          <div className="todo-buttons">
+            <button
+              onClick={() => {
+                setTodoList((prev) =>
+                  prev.map((el) =>
+                    el.id === todo.id ? { ...el, content: inputValue } : el
+                  )
+                );
+                setIsEdit(false);
+              }}
+            >
+              저장
+            </button>
+          </div>
         </>  
       ) : (
         <>
-          {todo.content}
-          <button onClick={() => setIsEdit(true)}>수정</button>
+          <span style={{ textDecoration: todo.isDone ? "line-through" : "" }}>
+            {todo.content}
+          </span>
+          <div className="todo-buttons">
+            <button onClick={() => setIsEdit(true)}>수정</button>
+          </div>
         </>
       )}
       <button
