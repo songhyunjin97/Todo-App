@@ -5,11 +5,14 @@ function App() {
   const [todoList, setTodoList] = useState([
     { id: 0, content: "123", isDone: false },
     { id: 1, content: "코딩 공부하기", isDone: false },
-    { id: 2, content: "잠 자기", isDone: false},
+    { id: 2, cㅂontent: "잠 자기", isDone: false},
   ]);
 
   return (
     <>
+      <header>
+        <h1>📖My Todo App✏️</h1>
+      </header>
       <TodoList todoList={todoList} setTodoList={setTodoList} />
       <hr />
       <TodoInput todoList={todoList} setTodoList={setTodoList} />
