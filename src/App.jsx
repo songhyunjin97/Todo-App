@@ -3,9 +3,9 @@ import "./App.css";
 
 function App() {
   const [todoList, setTodoList] = useState([
-    { id: 0, content: "123" },
-    { id: 1, content: "코딩 공부하기" },
-    { id: 2, content: "잠 자기" },
+    { id: 0, content: "123", isDone: false },
+    { id: 1, content: "코딩 공부하기", isDone: false },
+    { id: 2, content: "잠 자기", isDone: false},
   ]);
 
   return (
@@ -28,7 +28,7 @@ function TodoInput({ todoList, setTodoList }) {
       />
       <button
         onClick={() => {
-          const newTodo = { id: Number(new Date()), content: inputValue };
+          const newTodo = { id: Number(new Date()), content: inputValue, isDone: false };
           const newTodoList = [...todoList, newTodo];
           setTodoList(newTodoList);
           setInputValue("");
@@ -53,8 +53,12 @@ function TodoList({ todoList, setTodoList }) {
 function Todo({ todo, setTodoList }) {
   const [isEdit, setIsEdit] = useState(false);
   const [inputValue, setInputValue] = useState(todo.content);
+  const toggleDone = () => {
+    setTodoList((prev) => prev.map((el) => el.id === todo.id ? { ...el, isDone: !el.isDone} : el));
+  };
   return (
     <li>
+      <input type="checkbox" checked={todo.isDone} onChange={toggleDone} />
       {isEdit ? (
         <>
           <input
