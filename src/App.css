@@ -60,11 +60,27 @@ header {
 
 .todo-buttons {
   display: flex;
-  gap: 5px;
+  gap: 8px;
+  margin-left: 12px;
 }
 
 .todo-input {
   display: flex;
   gap: 10px;
   margin-top: 20px;
+}
+.edit-btn, .delete-btn {
+  border: none;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.edit-btn {
+  background-color: #ffd966;
+  color: #6b4f00;
 }

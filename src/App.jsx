@@ -4,8 +4,8 @@ import "./App.css";
 function App() {
   const [todoList, setTodoList] = useState([
     { id: 0, content: "운동하기", isDone: false },
-    { id: 1, content: "코딩 공부하기", isDone: false },
-    { id: 2, content: "잠 자기", isDone: false},
+    { id: 1, content: "코딩공부", isDone: false },
+    { id: 2, content: "낮잠자기", isDone: false},
   ]);
 
   return (
@@ -89,18 +89,18 @@ function Todo({ todo, setTodoList }) {
             {todo.content}
           </span>
           <div className="todo-buttons">
-            <button onClick={() => setIsEdit(true)}>수정</button>
+            <button className="edit-btn" onClick={() => setIsEdit(true)}>수정</button>
+          <button className="delete-btn"
+            onClick={() => 
+              setTodoList((prev) => 
+                prev.filter((el) => el.id !== todo.id))
+            }
+          >
+              삭제
+            </button>
           </div>
         </>
       )}
-      <button
-        onClick={() => 
-          setTodoList((prev) => 
-           prev.filter((el) => el.id !== todo.id))
-        }
-      >
-        삭제
-      </button>
     </li>
   );
 }
